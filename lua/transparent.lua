@@ -47,7 +47,7 @@ local opacity = {
   {"DiffText", fg = colors.amber},
   {"EndOfBuffer", fg = colors.warn_gray},
   {"ErrorMsg", fg = colors.white, bg = colors.red},
-  {"VertSplit", fg = NONE},
+  {"VertSplit", fg = colors.cool_gray, bg = colors.black},
   {"Folded", fg = colors.gray},
   {"FoldColumn", fg = colors.gray},
   {"SignColumn", bg = NONE},
@@ -67,8 +67,8 @@ local opacity = {
   {"Question", fg = colors.green},
   {"QuickFixLine", fg = colors.green},
   {"Search", bg = colors.emerald},
-  {"SpecialKey",fg = colors.white, bg = colors.true_gray,},
-  {"SpellBad",fg = colors.white, bg = colors.true_gray},
+  {"SpecialKey", fg = colors.white, bg = colors.true_gray},
+  {"SpellBad", fg = colors.white, bg = colors.true_gray},
   {"SpellCap", bg = colors.red},
   {"SpellLocal", bg = colors.pink},
   {"SpellRare", bg = colors.pink},
@@ -96,22 +96,33 @@ local opacity = {
   {"PreProc", fg = colors.purple},
   {"Statement", fg = colors.amber, gui = NONE},
   {"Comment", fg = colors.gray},
-  {"TSBoolean", fg=colors.purple},
+  {"TSBoolean", fg = colors.purple},
   {"TSCharacter", fg = colors.cyan},
   {"TSComment", fg = colors.gray},
-  {"TSConditional", fg=colors.orange},
-  {"TSConstant", fg=colors.white},
-  {"TSConstBuiltin", fg=colors.white},
-  {"TSConstMacro", fg=colors.white},
-  {"TSConstructor", fg=colors.indigo},
-  {"TSError", fg=colors.red},
-  {"TSException", fg=colors.cyan},
-  {"TSKeywordException", fg=colors.cyan},
-  {"TSKeywordOperator", fg=colors.yellow},
-  {"TSKeywordReturn", fg=colors.amber},
-  {"TSMethod", fg=colors.yellow, gui=gui.bold},
-  -- TODO:
-  -- TSNamespace
+  {"TSConditional", fg = colors.orange},
+  {"TSConstant", fg = colors.white},
+  {"TSConstBuiltin", fg = colors.white},
+  {"TSConstMacro", fg = colors.white},
+  {"TSConstructor", fg = colors.indigo},
+  {"TSError", fg = colors.red},
+  {"TSException", fg = colors.cyan},
+  {"TSKeywordException", fg = colors.cyan},
+  {"TSKeywordOperator", fg = colors.yellow},
+  {"TSKeywordReturn", fg = colors.amber},
+  {"TSMethod", fg = colors.yellow, gui = gui.bold},
+  {"TSNamespace", fg = colors.gray},
+  {"TSNone", fg = colors.warn_gray},
+  {"TSNumber", fg = colors.blue},
+  {"TSOperactor", fg = colors.orange},
+  {"TSParameter", fg = colors.white},
+  {"TSParameterReference", fg = colors.white},
+  {"TSProperty", fg = colors.cyan}, -- field
+  -- TODO: TSPunctDelimiter
+  {"TSString", fg = colors.green},
+  {"TSStringRegex", fg = colors.green},
+  {"TSWarning", bg = colors.orange},
+  {"TSDanger", bg = colors.red},
+  {"TSVariable", fg = colors.white}
 }
 
 -- @param: group{name: string, fg: string, bg:string, style:string}
@@ -132,6 +143,7 @@ end
 local setup = function()
   vim.cmd [[highlight clear]]
   vim.o.background = "dark"
+  vim.o.termguicolors = true
   vim.wo.cursorline = false
   if vim.fn.exists("syntax_on") then
     vim.cmd [[syntax reset]]
@@ -141,6 +153,8 @@ local setup = function()
     define_highlight(v)
   end
 end
+
+setup()
 
 return {
   setup = setup

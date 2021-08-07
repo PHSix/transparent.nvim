@@ -65,10 +65,53 @@ local opacity = {
   {"PmenuSbar", bg = colors.true_gray},
   {"PmenuThumb", bg = colors.white},
   {"Question", fg = colors.green},
+  {"QuickFixLine", fg = colors.green},
   {"Search", bg = colors.emerald},
+  {"SpecialKey",fg = colors.white, bg = colors.true_gray,},
+  {"SpellBad",fg = colors.white, bg = colors.true_gray},
+  {"SpellCap", bg = colors.red},
+  {"SpellLocal", bg = colors.pink},
+  {"SpellRare", bg = colors.pink},
+  {"StatusLine", bg = colors.blue_gray},
+  {"StatusLineNC", bg = colors.blue_gray},
+  {"StatusLineTerm", bg = colors.blue_gray},
+  {"StatusLineTermNC", bg = colors.blue_gray},
+  {"TabLine", bg = NONE},
+  {"TabLineFill", bg = NONE},
+  {"TabLineSel", bg = NONE},
+  {"Terminal", bg = NONE},
+  {"Title", fg = colors.yellow},
   {"Visual", bg = colors.warn_gray, gui = gui.inverse},
   {"WarningMsg", bg = colors.yellow},
-  {"WildMenu", fg = colors.white, bg = colors.warn_gray}
+  {"WildMenu", fg = colors.white, bg = colors.warn_gray},
+  {"Identifier", fg = colors.white},
+  {"Keyword", fg = colors.teal, gui = gui.italic},
+  {"Type", fg = colors.lightblue, gui = gui.italic},
+  {"Character", fg = colors.cyan},
+  {"String", fg = colors.lime},
+  {"Number", fg = colors.orange},
+  {"Boolean", fg = colors.purple},
+  {"Float", fg = colors.lightblue},
+  {"Function", fg = colors.yellow, gui = gui.bold},
+  {"PreProc", fg = colors.purple},
+  {"Statement", fg = colors.amber, gui = NONE},
+  {"Comment", fg = colors.gray},
+  {"TSBoolean", fg=colors.purple},
+  {"TSCharacter", fg = colors.cyan},
+  {"TSComment", fg = colors.gray},
+  {"TSConditional", fg=colors.orange},
+  {"TSConstant", fg=colors.white},
+  {"TSConstBuiltin", fg=colors.white},
+  {"TSConstMacro", fg=colors.white},
+  {"TSConstructor", fg=colors.indigo},
+  {"TSError", fg=colors.red},
+  {"TSException", fg=colors.cyan},
+  {"TSKeywordException", fg=colors.cyan},
+  {"TSKeywordOperator", fg=colors.yellow},
+  {"TSKeywordReturn", fg=colors.amber},
+  {"TSMethod", fg=colors.yellow, gui=gui.bold},
+  -- TODO:
+  -- TSNamespace
 }
 
 -- @param: group{name: string, fg: string, bg:string, style:string}
@@ -80,7 +123,7 @@ local function define_highlight(group)
   if group.bg then
     cmd = cmd .. "guibg=" .. group.bg .. " "
   end
-  if group.style then
+  if group.gui then
     cmd = cmd .. "gui=" .. group.gui .. ""
   end
   vim.cmd(cmd)

@@ -29,7 +29,8 @@ local colors = {
   cool_gray = "#6B7280",
   blue_gray = "#64748B",
   white = "#ffffff",
-  black = "#262626"
+  black = "#262626",
+  dark = "#1E293B"
 }
 
 local opacity = {
@@ -39,7 +40,7 @@ local opacity = {
   {"lCursor", fg = colors.black, bg = colors.blue_gray},
   {"CursorIM", fg = colors.black, bg = colors.blue_gray},
   {"CursorColumn", bg = NONE},
-  {"CursorLine", bg = NONE},
+  {"CursorLine", bg = colors.cool_gray},
   {"Directory", fg = colors.cyan, bg = NONE},
   {"DiffAdd", fg = colors.teal, bg = NONE},
   {"DiffChange", fg = colors.cyan, bg = NONE},
@@ -47,7 +48,7 @@ local opacity = {
   {"DiffText", fg = colors.amber},
   {"EndOfBuffer", fg = colors.warn_gray},
   {"ErrorMsg", fg = colors.white, bg = colors.red},
-  {"VertSplit", fg = colors.cool_gray, bg = colors.black},
+  {"VertSplit", fg = colors.blue_gray, bg = colors.black},
   {"Folded", fg = colors.gray},
   {"FoldColumn", fg = colors.gray},
   {"SignColumn", bg = NONE},
@@ -55,7 +56,7 @@ local opacity = {
   {"LineNr", fg = colors.warn_gray},
   {"CursorLineNr", fg = colors.lightblue},
   {"MatchParen", fg = colors.pink},
-  {"ModeMsg", fg = colors.fuchsia},
+  {"ModeMsg", fg = colors.warn_gray},
   {"MoreMsg", fg = colors.gray},
   {"NonText", fg = colors.true_gray},
   {"Normal", fg = colors.cyan, bg = NONE},
@@ -72,10 +73,10 @@ local opacity = {
   {"SpellCap", bg = colors.red},
   {"SpellLocal", bg = colors.pink},
   {"SpellRare", bg = colors.pink},
-  {"StatusLine", bg = colors.blue_gray},
-  {"StatusLineNC", bg = colors.blue_gray},
-  {"StatusLineTerm", bg = colors.blue_gray},
-  {"StatusLineTermNC", bg = colors.blue_gray},
+  {"StatusLine", fg = colors.dark},
+  {"StatusLineNC", fg = colors.dark},
+  {"StatusLineTerm", fg = colors.dark},
+  {"StatusLineTermNC", fg = colors.dark},
   {"TabLine", bg = NONE},
   {"TabLineFill", bg = NONE},
   {"TabLineSel", bg = NONE},
@@ -88,15 +89,15 @@ local opacity = {
   {"Keyword", fg = colors.teal, gui = gui.italic},
   {"Type", fg = colors.lightblue, gui = gui.italic},
   {"Character", fg = colors.cyan},
-  {"String", fg = colors.lime},
+  {"String", fg = colors.green},
   {"Number", fg = colors.orange},
-  {"Boolean", fg = colors.purple},
+  {"Boolean", fg = colors.emerald},
   {"Float", fg = colors.lightblue},
   {"Function", fg = colors.yellow, gui = gui.bold},
-  {"PreProc", fg = colors.purple},
+  {"PreProc", fg = colors.emerald},
   {"Statement", fg = colors.amber, gui = NONE},
   {"Comment", fg = colors.gray},
-  {"TSBoolean", fg = colors.purple},
+  {"TSBoolean", fg = colors.emerald},
   {"TSCharacter", fg = colors.cyan},
   {"TSComment", fg = colors.gray},
   {"TSConditional", fg = colors.orange},
@@ -122,7 +123,21 @@ local opacity = {
   {"TSStringRegex", fg = colors.green},
   {"TSWarning", bg = colors.orange},
   {"TSDanger", bg = colors.red},
-  {"TSVariable", fg = colors.white}
+  {"TSVariable", fg = colors.white},
+  {"TelescopeSelection", fg = colors.rose, bg = NONE, gui = gui.bold},
+  {"TelescopeSelectionCaret", fg = colors.true_gray},
+  {"TelescopeMultiSelection", fg = colors.blue, gui = gui.bold},
+  {"TelescopeNormal", fg = colors.true_gray},
+  {"TelescopeBorder", fg = colors.warn_gray},
+  {"TelescopePromptBorder", fg = colors.green},
+  {"TelescopePromptPrefix", fg = colors.green},
+  {"TelescopeResultsBorder", fg = colors.blue},
+  {"TelescopeMatching", fg = colors.emerald},
+  {"TelescopePreviewBorder", fg = colors.cyan},
+  {"LspDiagnosticsDefaultError", fg = colors.red},
+  {"LspDiagnosticsDefaultWarning", fg = colors.yellow},
+  {"LspDiagnosticsDefaultInformation", fg = colors.blue_gray},
+  {"LspDiagnosticsDefaultHint", fg = colors.gray}
 }
 
 -- @param: group{name: string, fg: string, bg:string, style:string}
@@ -145,6 +160,7 @@ local setup = function()
   vim.o.background = "dark"
   vim.o.termguicolors = true
   vim.wo.cursorline = false
+  vim.cmd [[set fillchars+=vert:\ ]]
   if vim.fn.exists("syntax_on") then
     vim.cmd [[syntax reset]]
   end
